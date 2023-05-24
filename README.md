@@ -1,4 +1,4 @@
-# Cahier des charges incoming 🔥
+# Cahier des charges évolutif tékaté 🐱‍👤
 
 **L'idée est de recevoir dans des channels des updates sur des changements de value de coins donnés (soit en créant une "wishlist" de truc suivis), et de trouver pour follow des utilisateurs et spots des transactions (sinon même principe "wishlist" d'utilisateurs suivis etc... mais il me semble qu'on peut faire ça inapp et récup après)**  
 Pour le reste on verra après mais si t'as des idées hésite pas à implémenter c'est tjrs du +
