@@ -8,7 +8,7 @@ module.exports = {
             interaction.user = interaction.guild.members.cache.get(interaction.user.id);
         }
         else {
-            return client.say(interaction, { content: 'Les commandes ne sont disponibles uniquement sur un serveur', error: true });
+            return client.say(interaction, { content: 'Les commandes sont disponibles uniquement sur un serveur', error: true });
         }
 
         let fileToLoad;
