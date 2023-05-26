@@ -3,9 +3,10 @@ const { promisify } = require('util');
 const globPromise = promisify(glob);
 
 module.exports = async (client) => {
+
     // Event handler
-    const eventFiles = await globPromise(`${process.cwd()}/src/events/*/*.js`);
-    eventFiles.map(event => {
+    const events = await globPromise(`${process.cwd()}/src/events/*/*.js`);
+    events.map(event => {
         const file = require(event);
         if (file.name) {
             try {
@@ -19,13 +20,13 @@ module.exports = async (client) => {
         }
     });
 
-    // Command handler
-    const commandFiles = await globPromise(`${process.cwd()}/src/commands/*/*.js`);
-    commandFiles.map(command => {
+    // Command Handler
+    const commands = await globPromise(`${process.cwd()}/src/commands/*/*.js`);
+    client.arrayOfCommands = [];
+    commands.map(command => {
         const file = require(command);
         if (!file?.name) return;
         client.commands.set(file.name, file);
         client.arrayOfCommands.push(file);
     });
-
 }
