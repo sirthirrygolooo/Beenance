@@ -104,7 +104,8 @@ function buildRankingMessage() {
         .setTitle('Classement des meilleurs traders')
         .setDescription(users)
         .setColor('Green')
-        .setImage('https://img.freepik.com/vecteurs-premium/fond-ecran-forex-trading_23-2148584743.jpg?w=2000')
+        // .setImage('https://img.freepik.com/vecteurs-premium/fond-ecran-forex-trading_23-2148584743.jpg?w=2000')
+        .setImage('http://thetraderinstitute.com/wp-content/uploads/2017/03/Option-Trading.jpeg')
         .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
         .setTimestamp();
 
