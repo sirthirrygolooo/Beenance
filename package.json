@@ -1,11 +1,8 @@
 {
   "dependencies": {
     "axios": "^1.4.0",
-<<<<<<< Updated upstream
-=======
+    "better-sqlite3": "^8.4.0",
     "discord.js": "^14.11.0",
-    "glob": "^7.1.7",
->>>>>>> Stashed changes
     "quick.db": "^9.1.6"
   }
 }
