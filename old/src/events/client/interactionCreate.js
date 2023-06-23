@@ -16,11 +16,11 @@ module.exports = {
             fileToLoad = client.commands.get(commandName);
         }
 
-        if (!fileToLoad) return client.say(interaction, { content: 'Cette interaction n\'est pas disponible', error: true });
+        if (!fileToLoad) return interaction.reply({ content: 'Cette interaction n\'est pas disponible', ephemeral: true });
         fileToLoad.run(interaction, client)
             .catch(err => {
                 console.error(err);
-                return client.say(interaction, { content: 'Une erreur est survenue durant l\'exécution de l\'interaction'})
+                return interaction.reply({ content: 'Une erreur est survenue durant l\'exécution de l\'interaction', ephemeral: true });
             })
     }
 }

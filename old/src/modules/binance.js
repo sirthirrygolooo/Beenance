@@ -50,34 +50,39 @@ async function getLeaderboard() {
  * @function getChanges
  * @param {Object} oldLeaderboard - Ancien classement
  * @param {Object} leaderboard - Nouveau classement
- * @returns {Array|null} - La liste des changements
+ * @returns {Object} - La liste des changements
  */
 function getChanges(oldLeaderboard, leaderboard) {
-    let changes = [];
-    for (let i = 0; i < leaderboard.length; i++) {
-        let currentTrader = leaderboard[i];
-        let previousTrader = oldLeaderboard[i];
+    let changes = {
+        up: [],
+        down: [],
+        new: [],
+        delete: [],
+    };
 
-        if (!oldLeaderboard.find(trader => trader.encryptedUid === currentTrader.encryptedUid)) {
-            changes.push({ trader: currentTrader, type: 'new' });
-        }
-        else if (!leaderboard.find(trader => trader.encryptedUid === previousTrader.encryptedUid)) {
-            changes.push({ trader: previousTrader, type: 'delete' });
-        }
-        else {
-            const traderInOldLeaderboard = oldLeaderboard.find(trader => trader.encryptedUid === currentTrader.encryptedUid);
-            if (currentTrader.rank < traderInOldLeaderboard.rank) {
-                changes.push({ trader: currentTrader, type: 'up', previousRank: traderInOldLeaderboard.rank, });
-            }
-            else if (currentTrader.rank > traderInOldLeaderboard.rank) {
-                changes.push({ trader: currentTrader, type: 'down', previousRank: traderInOldLeaderboard.rank });
+    leaderboard.map(currentTrader => {
+        let previousTrader = oldLeaderboard.find(trader => trader.encryptedUid === currentTrader.encryptedUid);
+
+        if (!previousTrader) {
+            changes.new.push(currentTrader);
+        } else {
+            if (currentTrader.rank < previousTrader.rank) {
+                changes.up.push({ trader: currentTrader, previousRank: previousTrader.rank });
+            } else if (currentTrader.rank > previousTrader.rank) {
+                changes.down.push({ trader: currentTrader, previousRank: previousTrader.rank });
             }
         }
-    }
-    return changes.length > 0
-        ? changes
-        : null;
+    });
+
+    oldLeaderboard.map(oldTrader => {
+        if (!leaderboard.find(trader => trader.encryptedUid === oldTrader.encryptedUid)) {
+            changes.delete.push(oldTrader);
+        }
+    });
+    return changes;
 }
+
+
 
 module.exports = {
     updateLeaderboard,

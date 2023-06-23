@@ -2,9 +2,9 @@ const axios = require('axios');
 
 const options = {
     method: 'GET',
-    url: 'https://binance-futures-leaderboard1.p.rapidapi.com/v2/getTraderInfo',
+    url: 'https://binance-futures-leaderboard1.p.rapidapi.com/v1/getOtherPosition',
     params: {
-        encryptedUid: '21CD087408060BDD97F001B72CC2B0D3'
+        encryptedUid: '84F16B34DDBE53A914F88EFBA67F6E6C'
     },
     headers: {
         'X-RapidAPI-Key': '055cd543a5msh9c035da15f5b96fp100da8jsn9af079ce814d',
@@ -15,8 +15,8 @@ const options = {
 (async () => {
     try {
         const response = await axios.request(options);
-        console.log(response.data);
+        console.log(response.data.data);
     } catch (error) {
         console.error(error);
     }
-})()
+})();
